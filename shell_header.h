@@ -7,7 +7,7 @@
 extern char **environ;
 
 int _strncmp(char *s1, char *s2, size_t n);
-int _strlen(char *str); /*should we change return type to size_t like man page*/
+int _strlen(char *str);
 int print_string(char *str);
 
 #endif /* HEADER_H */

@@ -3,12 +3,40 @@
 #include <string.h>
 #include <stdlib.h>
 /**
+ * _strdup - returns pointer to new alloc'd space in mem containing string
+ * @str: sting
+ *
+ * Return: NULL if string is NULL
+ */
+char *_strdup(char *str)
+{
+	char *ptr;
+	int i, len = 0;
+
+	if (str == NULL)
+		return (NULL);
+
+	while (str[len])
+		len++;
+
+	ptr = malloc(sizeof(char) * (len + 1));
+
+	if (ptr == NULL)
+		return (NULL);
+
+	for (i = 0; i < len + 1; i++)
+		ptr[i] = str[i];
+
+	return (ptr);
+}
+/**
  * _strncmp - char *s1, char *s2, size_t n
  * @s1: string one
  * @s2: string two
- * description: function that compares the first n bystes of strings s1 and s2
- * Return: int <,=,> if s1 (or the first n bytes thereof) is found, respectively
- * to be greater than s2.
+ * @n: number of bytes
+ * description: function that compares the first n bytes of strings s1 and s2
+ * Return: int <,=,> if s1 (or the first n bytes thereof) is found,
+ * respectively to be greater than s2.
  */
 
 int _strncmp(char *s1, char *s2, size_t n)
@@ -39,7 +67,8 @@ int _strlen(char *str) /*should we change return type to size_t like man page*/
 {
 	int count;
 
-	for (count = 0; str[count]; count++);
+	for (count = 0; str[count]; count++)
+		;
 	return (count);
 }
 /**
