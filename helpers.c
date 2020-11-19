@@ -3,6 +3,42 @@
 #include <string.h>
 #include <stdlib.h>
 /**
+ * tokenizer - char str, char delim
+ * @str: string to be tokenized
+ * @delim: delimeter to look for
+ * description: function that parses through a string based on a delimeter
+ * Return: pointer to an array of strings parsed from string
+ */
+char **tokenizer(char *str, char *delim)
+{
+	char **buffer;
+	int delim_count = 0, i, token_count;
+
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i] == *delim)
+			delim_count++;
+	}
+
+	token_count = delim_count + 1;
+
+	buffer = malloc(sizeof(char *) * (token_count + 1));
+
+	if (buffer == NULL)
+		return (NULL);
+	i = 0;
+	buffer[i] = strtok(str, delim);
+	i++;
+	while (i < token_count)
+	{
+		buffer[i] = strtok(NULL, delim);
+		i++;
+	}
+	buffer[i] = NULL;
+
+	return (buffer);
+}
+/**
  * _strdup - returns pointer to new alloc'd space in mem containing string
  * @str: sting
  *
