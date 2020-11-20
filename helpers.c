@@ -3,6 +3,17 @@
 #include <string.h>
 #include <stdlib.h>
 /**
+ * prompt - void
+ * description: print prompt to av[0]
+ * Return: void
+ */
+void *prompt(void)
+{
+	char *prompt = ":) ";
+
+	print_string(prompt);
+}
+/**
  * tokenizer - char str, char delim
  * @str: string to be tokenized
  * @delim: delimeter to look for
