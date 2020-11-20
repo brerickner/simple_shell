@@ -6,7 +6,7 @@
 
 extern char **environ;
 
-void *prompt(void);
+void prompt(void);
 char **tokenizer(char *str, char *delim);
 int _strncmp(char *s1, char *s2, size_t n);
 int _strlen(char *str);
