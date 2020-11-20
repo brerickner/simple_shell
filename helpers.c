@@ -1,60 +1,94 @@
 #include "shell_header.h"
-#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 /**
+ * fork_proc - char tokens
+ * @tokens: arguments passed in to command lin
+ * description: function that creates a child process
+ * Return: void
+ */
+void fork_proc(char **tokens)
+{
+	pid_t child = fork();
+	int status;
+
+	if  (child == -1)
+		exit(-1);/*failed forking child*/
+	if (child == 0)
+	{
+		if (execve(tokens[0], tokens, NULL) == -1)
+			exit(3); /*unable to read*/
+	}
+	else
+		child = wait(&status);
+}
+/**
+ * print_string - char str
+ * @str: string to print
  * description: function that prints string to std output
- * Return: 1 if successful. Else -1.
+ * Return: string to std out
  */
 int print_string(char *str)
 {
-        return (write(STDOUT_FILENO, str, strlen(str)));
+	return (write(STDOUT_FILENO, str, strlen(str)));
 }
+/**
+ * prompt - void
+ * description: function that fork a child proccess
+ * Return: void
+ */
 void prompt(void)
 {
-        char *prompt = "$ ";
+	char *prompt = "$ ";
 
-        print_string(prompt);
+	print_string(prompt);
 }
 /**
  * tokenizer - char str, char delim
+ * @str: string to parse
+ * @delim: delimeter to look for when parsing string
+ * description: parses through a string and returns array of strings as
+ * tokens
  * Return: pointer to an array of strings parsed from string
  */
 char **tokenizer(char *str, char *delim)
 {
-        char **buffer;
-        int delim_count = 0, i, token_count;
+	char **buffer;
+	int delim_count = 0, i, token_count;
 
-        for (i = 0; str[i]; i++)
-        {
-                if (str[i] == *delim)
-                        delim_count++;
-        }
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i] == *delim)
+			delim_count++;
+	}
 
-        token_count = delim_count + 1;
+	token_count = delim_count + 1;
 
-        buffer = malloc(sizeof(char *) * (token_count + 1));
+	buffer = malloc(sizeof(char *) * (token_count + 1));
 
-        if (buffer == NULL)
-                return (NULL);
-        i = 0;
-        buffer[i] = strtok(str, delim);
-        i++;
-        while (i < token_count)
-        {
-                buffer[i] = strtok(NULL, delim);
-                i++;
-        }
-        buffer[i] = NULL;
+	if (buffer == NULL)
+		return (NULL);
+	i = 0;
+	buffer[i] = strtok(str, delim);
+	i++;
+	while (i < token_count)
+	{
+		buffer[i] = strtok(NULL, delim);
+		i++;
+	}
+	buffer[i] = NULL;
 
-        return (buffer);
+	return (buffer);
 }
 /**
- * _strdup - returns pointer to new alloc'd space in mem containing string
+ * _strdup - char str
  * @str: sting
- *
- * Return: NULL if string is NULL
+ * description: alloc'd space in mem then duplicates string into it
+ * Return: pointer to newly alloct'd space in mem. Else NULL
  */
 char *_strdup(char *str)
 {
