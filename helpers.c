@@ -57,32 +57,35 @@ void prompt(void)
  */
 char **tokenizer(char *str, char *delim)
 {
-	char **buffer;
-	int delim_count = 0, i, token_count;
+	char **holder;
+	int delim_count = 0, index, token_count;
 
-	for (i = 0; str[i]; i++)
+	for (index = 0; str[index]; index++)
 	{
-		if (str[i] == *delim)
+		if (str[index] == *delim)
 			delim_count++;
 	}
 
 	token_count = delim_count + 1;
 
-	buffer = malloc(sizeof(char *) * (token_count + 1));
+	holder = malloc(sizeof(char *) * (token_count + 1));
 
-	if (buffer == NULL)
+	if (holder == NULL)
 		return (NULL);
-	i = 0;
-	buffer[i] = strtok(str, delim);
-	i++;
-	while (i < token_count)
-	{
-		buffer[i] = strtok(NULL, delim);
-		i++;
-	}
-	buffer[i] = NULL;
 
-	return (buffer);
+	index = 0;
+	holder[index] = strtok(str, delim);
+	index++;
+
+	while (index < token_count)
+	{
+		holder[index] = strtok(NULL, delim);
+		index++;
+	}
+	holder[index] = NULL;
+/*	free(holder[index]);*/
+/*	free(holder);*/
+	return (holder);
 }
 /**
  * _strdup - char str

@@ -22,11 +22,14 @@ int main(void)
 	{
 		prompt();
 		if (getline(&buffer, &buffSize, stdin) == -1)
+		{
 			break; /*need to write error message*/
+		}
 		cpyBuff = _strdup(buffer);
 		tokens = tokenizer(cpyBuff, "\n");
 		fork_proc(tokens);
 	}
+	free(cpyBuff);
 	free(buffer);
 	return (0);
 }
