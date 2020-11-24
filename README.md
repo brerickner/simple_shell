@@ -1,4 +1,4 @@
-# Holberton Simple Shell - hsh
+# Holberton Simple C-Shell - hsh
 
 A simple UNIX command interpreter assigned in the curriculum at Holberton School
 
@@ -35,8 +35,13 @@ $
 ## Usage
 
 ```bash
+echo "hello world" | ./hsh
+
+or
+
+./hsh
 
 ```
 
 ## Contributing
-Holberton students have contributed to a test repository in order to test edge cases.
+Holberton students have contributed test cases in order to check for edge cases.
