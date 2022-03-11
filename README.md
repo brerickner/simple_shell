@@ -2,7 +2,7 @@
     <img src="bre_favi.png" alt="Bre" title="Bre's Github" align="right" height="60" />
 </a>
 
-# Holberton Simple C-Shell - hsh
+# Simple Bre-Shell
 
 A simple UNIX command interpreter assigned in the curriculum at Holberton School
 
@@ -15,8 +15,8 @@ Hsh is a simple rendition of a UNIX command language interpreter that reads and 
 Compile all c files in the repository, using the wildcard command (*.c), and run the executable:
 
 ```bash
-gcc *.c -o hsh
-./hsh
+$ gcc *.c -o hsh
+$ ./hsh
 ```
 Hsh can be used in two different modes, interactive and non-interactive.
 
@@ -40,9 +40,11 @@ $
 
 ```bash
 echo "hello world" | ./hsh
+```
 
 or
 
+```bash
 ./hsh
 
 ```
