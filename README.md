@@ -1,3 +1,6 @@
+<a href="https://github.com/brerickner/">
+    <img src="bre_favi.png" alt="Bre" title="Bre's Github" align="right" height="60" />
+</a>
 # Holberton Simple C-Shell - hsh
 
 A simple UNIX command interpreter assigned in the curriculum at Holberton School
